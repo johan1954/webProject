@@ -11,13 +11,13 @@ function App() {
   return (
     <Router>
       <div className="navBar">
-        <ul>
+        <ul className="navBarContent">
           Feed
         </ul>
-        <ul>
+        <ul className="navBarContent">
           Profile
         </ul>
-        <ul>
+        <ul className="navBarContent">
           Settings
         </ul>
       </div>

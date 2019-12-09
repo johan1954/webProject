@@ -1,4 +1,19 @@
 .navBar {
     background-color: darkgray;
-    width: auto;
+    margin-left: 2%;
+    width: 10%;
+    height: 100%;
+}
+
+.navBarContent {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    padding: 20%;
+}
+
+.profileWindow {
+    background-color: darkgray;
+    margin-left: 2%;
+    width: 10%;
+    height: 100%;
 }
