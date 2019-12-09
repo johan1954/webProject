@@ -4,31 +4,35 @@ import './App.css';
 import './navBar.css';
 import Feed from './routes/feed';
 import Profile from './routes/profile';
+import Nav from './components/navBar';
 
 function App() {
+
+  let loggedIn = 0;
+  if (loggedIn == 0) {
+
+  }
   
 
   return (
     <Router>
-      <div className="navBar">
-        <ul className="navBarContent">
-          Feed
-        </ul>
-        <ul className="navBarContent">
-          Profile
-        </ul>
-        <ul className="navBarContent">
-          Settings
-        </ul>
-      </div>
-        <Route path="/feed" component={Feed}/>
-        
-        <Route path="/profile" component={Profile}/>
-
-
+      <div>
+        <Nav/>
+        <Switch>
+          <Route path="/" exact component={Login}/>
+          <Route path="/feed" component={Feed}/>
+          <Route path="/profile" component={Profile}/>
+        </Switch>
+        </div>
     </Router>
   )
 }
+
+const Login = () => (
+  <div className="App">
+    <h1>Not logged in!</h1>
+  </div>
+)
 
 export default App;
 
