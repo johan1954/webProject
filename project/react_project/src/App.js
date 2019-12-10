@@ -4,15 +4,14 @@ import './App.css';
 import './navBar.css';
 import Feed from './routes/feed';
 import Profile from './routes/profile';
+import Login from './routes/login';
 import Nav from './components/navBar';
+import {useSelector} from 'react-redux';
+import {login, logout} from './actions';
 
 function App() {
 
-  let loggedIn = 0;
-  if (loggedIn == 0) {
-
-  }
-  
+  const isLogged = useSelector(state => state.isLogged);
 
   return (
     <Router>
@@ -20,19 +19,16 @@ function App() {
         <Nav/>
         <Switch>
           <Route path="/" exact component={Login}/>
-          <Route path="/feed" component={Feed}/>
-          <Route path="/profile" component={Profile}/>
+          {isLogged ? <div>
+            <Route path="/feed" component={Feed}/>
+            <Route path="/profile" component={Profile}/>
+          </div> : <h2>Please, log in to see other users' posts!</h2>
+          }
         </Switch>
         </div>
     </Router>
   )
 }
-
-const Login = () => (
-  <div className="App">
-    <h1>Not logged in!</h1>
-  </div>
-)
 
 export default App;
 

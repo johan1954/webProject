@@ -1,0 +1,11 @@
+.LoginWindow {
+   align-content: center;
+   text-align: center;
+
+}
+.LoginContent {
+    background-color: aliceblue;
+    margin: auto;
+    align-content: center;
+    width: 50%;
+}
