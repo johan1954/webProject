@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const usersRoute = require("./routes/users");
+const postsRoute = require("./routes/posts");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -9,10 +10,10 @@ app.get('/', (req, res) => {
     res.send("Home Page");
 });
 
-
-
-app.use('/users', usersRoute);
 app.use(bodyParser.json());
+app.use('/users', usersRoute);
+app.use('/posts', postsRoute);
+
 
 
 var mongoURL = "mongodb://localhost:27017/expressDatabase";
