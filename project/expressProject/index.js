@@ -18,7 +18,8 @@ app.use('/posts', postsRoute);
 
 var mongoURL = "mongodb://localhost:27017/expressDatabase";
 
-mongoose.connect(mongoURL, { useNewUrlParser: true }, () => console.log("Database connection established!"))
+mongoose.connect(mongoURL, { useNewUrlParser: true }, () => 
+console.log("Database connection established!"))
 
 app.listen(3000, () => {
     console.log("started database server")

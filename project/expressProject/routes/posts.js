@@ -2,16 +2,72 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
 
-router.get("/getPost", (req, res) => {
-    res.json(res);
+// Get all posts from a specific publisher
+router.get("/getPost/:postPublisher", async (req, res) => {
+    console.log("finding:", req.params.username);
+    try {
+        const allPosts = await User.find({ username: req.params.username });
+        res.json(allPosts);
+    }
+    catch (err){
+        res.status(404).json({message: err});
+    }
+}); 
+
+// Get all posts
+router.get("/getPosts", async (req, res) => {
+    try {
+        const allPosts = await Post.find();
+        res.json(allPosts);
+    }
+    catch (err) {
+        res.json({message: (err)});
+    }
 });
 
-router.get("/getPosts", (req, res) => {
-    res.json(res);
+// Create a new post
+router.post("/setPost", async (req, res) => {
+    let public = 1;
+    if (req.body.postPublic === 0) {
+        let public = 0;
+    } 
+    console.log(req.body);
+    const saveThisPost = new Post({
+        postContent: req.body.postContent,
+        postPublisher: req.body.postPublisher,
+        postPublic: public
+    });
+
+    try {
+        const savedData = await saveThisPost.save()
+        res.json(savedData);
+    }
+    catch (err) {
+        res.json({message :err});
+    }
 });
 
-router.post("/setPost", (req, res) => {
-    req.body
-});
+// Delete a post
+router.delete("/delPost/:postId", async (req, res) => {
+    console.log("finding:", req.params.postId);
+    try {
+        const aPost = await Post.remove({ username: req.params.postId });
+        res.json(aPost);
+    }
+    catch (err){
+        res.status(404).json({message: err});
+    }
+}); 
+// Update a post
+router.patch("/patchPost/:postId", async (req, res) => {
+    console.log("finding:", req.params.postId);
+    try {
+        const aPost = await Post.update({ username: req.params.postId });
+        res.json(aPost);
+    }
+    catch (err){
+        res.status(404).json({message: err});
+    }
+}); 
 
 module.exports = router;

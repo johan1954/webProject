@@ -9,6 +9,11 @@ const PostSchema = mongoose.Schema( {
     postPublisher: {
         type: String,
         required: true
+    },
+    postPublic: {
+        type: Number,
+        required: true, 
+        default: 1
     }
 });
 
