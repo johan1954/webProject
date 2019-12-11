@@ -24,10 +24,11 @@ router.get("/:username", async (req, res) => {
     console.log("finding:", req.params.username);
     try {
         const aUser = await User.findOne({ username: req.params.username });
+        console.log(aUser);
         res.json(aUser);
     }
     catch (err){
-        res.status(404).json({message: err});
+        res.json({message: err});
     }
 }); 
 
