@@ -1,4 +1,4 @@
-var MongoClient = require("mongodb").MongoClient;
+var mongoose = require("mongoose");
 
 // This is a singleton type structure for holding the DB connection
 
@@ -11,7 +11,7 @@ var state = {
 exports.connect = function(url, done) {
   if (state.db) return done();
 
-  MongoClient.connect(url, function(err, client) {
+  mongoose.connect(url, function(err, client) {
     if (err) return done(err);
     // Addition: Connecting to right DB
     state.db = client.db(dbname);
