@@ -21,7 +21,7 @@ app.use('/posts', postsRoute);
 // mongoose.connect(mongoURL, { useNewUrlParser: true }, () => 
 // console.log("Database connection established!"))
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log("started database server")
 });
 
