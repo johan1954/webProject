@@ -11,7 +11,7 @@ import {login, logout} from './actions';
 
 function App() {
 
-  const isLogged = useSelector(state => state.isLogged);
+  const isLogged = useSelector(state => state.loggedInReducer);
 
   return (
     <Router>
@@ -22,7 +22,7 @@ function App() {
           {isLogged ? <div>
             <Route path="/feed" component={Feed}/>
             <Route path="/profile" component={Profile}/>
-          </div> : <h2>Please, log in to see other users' posts!</h2>
+          </div> : <h2 className="NotLoggedInWarning">Please, log in to see other users' posts!</h2>
           }
         </Switch>
         </div>

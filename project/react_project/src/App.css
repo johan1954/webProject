@@ -28,4 +28,10 @@
   color: #61dafb;
 }
 
+.NotLoggedInWarning {
+  background-color: lightcoral;
+  color: whitesmoke;
+  text-align: center;
+}
+
 

@@ -7,7 +7,9 @@ import {createStore} from 'redux';
 import loggedReducer from './reducers/loggedInReducer';
 import {Provider} from 'react-redux';
 
-const store = createStore(loggedReducer);
+const store = createStore(
+    loggedReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
