@@ -11,7 +11,7 @@ import {login, logout} from './actions';
 
 function App() {
 
-  const isLogged = useSelector(state => state.loggedInReducer);
+  const isLogged = useSelector(state => state.logger);
 
   return (
     <Router>
