@@ -9,3 +9,9 @@
     align-content: center;
     width: 50%;
 }
+
+.Invalid {
+    background-color: aliceblue;
+    align-content: center;
+    color: red;
+}

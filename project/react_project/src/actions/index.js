@@ -1,10 +1,10 @@
 export const login = () => {
     return {
-        type: 'login'
+        type: 'LOGIN'
     };
 };
 export const logout = () => {
     return {
-        type: 'logout'
+        type: 'LOGOUT'
     };
 };

@@ -1,34 +1,53 @@
 import React, {useState} from 'react';
 import '../login.css';
+import address from '../config/config';
+import {login} from '../actions/index'
 import {useSelector, useDispatch} from 'react-redux';
 
 function Login() {
 
-    const urlMain = "http://nodejs-mongo-persistent-course-project.rahtiapp.fi/";
+    const dispatch = useDispatch();
 
-    const loggedIn = useSelector(state => state.login);
-    const usernameAtUse = useSelector(state => state.username);
+    const loggedIn = useSelector(state => state.logger);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [createUser, setCreateUser] = useState("");
+    const [createPass, setCreatePass] = useState("");
+    const [createVerif, setVerif] = useState("");
     const [returnPassword, setReturnPassword] = useState("null"); 
     let searchUsername, searchPassword;
 
+    const [auth, setAuth] = useState(true);
+
     async function loginFunction () {
         let data, jsonData;
-        data = await fetch(urlMain + "users/" + searchUsername);
+        data = await fetch(address + "users/" + searchUsername);
         try {
             jsonData = await data.json();
+
         }
         catch {
             return;
         }
-        if (jsonData != null) {
+        // If there is a json from the database
+        if (jsonData != undefined) {
+            // Check the password, if the data matches set states to true and save login data to cookies.
             if (jsonData.password === searchPassword) {
-                console.log("Auth is okay!");
+                setAuth(true);
+                console.log("Logged in");
+                const tempString = jsonData.username+"-"+jsonData._id
+                document.cookie = ("usernameid="+tempString);
+            }
+            else {
+                setAuth(false);
             }
         }
+        else{
+            setAuth(false);
+        } 
+        
 
-        data = await fetch(urlMain + "users/users");
+        data = await fetch(address + "users/users");
         jsonData = await data.json();
         try {
             jsonData = await data.json()
@@ -57,7 +76,7 @@ function Login() {
                 <h2>Login:</h2>
                 <p>Username: 
                     <input 
-                        type="text" 
+                        type="text"
                         onChange={event => setUsername(event.target.value)}>
                     </input>
                 </p>
@@ -67,7 +86,8 @@ function Login() {
                         onChange={event => setPassword(event.target.value)}>
                     </input>
                 </p>
-                <button onClick={(event) => <div>{updateVars(),loginFunction()}</div>}>Login</button>
+                <button onClick={() => <p>{updateVars(),loginFunction(), dispatch(login())}</p>}>Login</button>
+                {auth ? "" : <p className="Invalid">Invalid username or password!</p>}
                 <h2>Create account:</h2>
                 <p>Username: 
                     <input 
@@ -88,7 +108,7 @@ function Login() {
                     </input>
                 </p>
                 <p></p>
-                <button onClick={() => {document.cookie = ("username=jasonMomoa")}}>Create account</button>
+                <button>Create account</button>
 
             </div>
         </div>

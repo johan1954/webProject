@@ -1,8 +1,8 @@
 const loggedInReducer = (state = false, action) => {
-    switch(action.state) {
-        case 'login':
+    switch(action.type) {
+        case 'LOGIN':
             return state = true;
-        case 'logout':
+        case 'LOGOUT':
             return state = false;
         default:
             return false;

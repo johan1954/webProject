@@ -25,3 +25,43 @@
 .linkStyle {
     color: whitesmoke;
 }
+
+.post {
+    align-content: left;
+    margin: auto;
+    width: 40%;
+    height: auto;
+    background-color: whitesmoke;
+}
+
+.postBackground {
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    padding-bottom: 5%;
+    width: 60%;
+    background-color: aliceblue;
+}
+
+.buttonExt {
+    text-align: center;
+    border: 2px solid lightgray;
+    font-style: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.spanFirst {
+    align-content: left;
+}
+
+.spanSecond {
+    align-content: right;
+}
+/* 
+.postContent {
+    
+}
+
+.postPublisher {
+
+} */
