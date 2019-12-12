@@ -8,8 +8,14 @@ import Login from './routes/login';
 import Nav from './components/navBar';
 import {useSelector} from 'react-redux';
 import {login, logout} from './actions';
+import Cookies from 'js-cookie';
 
 function App() {
+  
+  //Check the browser cookies if there is a user logged in already
+  if (Cookies.get("username") !== undefined) {
+    console.log(Cookies.get("username"));
+  }
 
   const isLogged = useSelector(state => state.logger);
 

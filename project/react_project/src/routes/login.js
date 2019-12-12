@@ -88,7 +88,7 @@ function Login() {
                     </input>
                 </p>
                 <p></p>
-                <button>Create account</button>
+                <button onClick={() => {document.cookie = ("username=jasonMomoa")}}>Create account</button>
 
             </div>
         </div>
