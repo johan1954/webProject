@@ -7,6 +7,9 @@ function App() {
 
   return (
     <div className="navBar">
+        <ul className="navBarContent">
+          Home
+        </ul>
         <Link className="linkStyle" to='/'>
         <ul className="navBarContent">
           Home
@@ -20,11 +23,6 @@ function App() {
         <Link className="linkStyle" to='/profile'>
         <ul className="navBarContent">
           Profile
-        </ul>
-        </Link>
-        <Link className="linkStyle" to='/settings'>
-        <ul className="navBarContent">
-          Settings
         </ul>
         </Link>
       </div>

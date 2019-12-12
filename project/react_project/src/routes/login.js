@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 import '../login.css';
 import address from '../config/config';
 import {login} from '../actions/index'
@@ -14,7 +15,6 @@ function Login() {
     const [createUser, setCreateUser] = useState("");
     const [createPass, setCreatePass] = useState("");
     const [createVerif, setVerif] = useState("");
-    const [returnPassword, setReturnPassword] = useState("null"); 
     let searchUsername, searchPassword;
 
     const [auth, setAuth] = useState(true);
@@ -24,7 +24,6 @@ function Login() {
         data = await fetch(address + "users/" + searchUsername);
         try {
             jsonData = await data.json();
-
         }
         catch {
             return;
@@ -45,8 +44,6 @@ function Login() {
         else{
             setAuth(false);
         } 
-        
-
         data = await fetch(address + "users/users");
         jsonData = await data.json();
         try {
@@ -56,7 +53,25 @@ function Login() {
         console.log(jsonData);
     }  
 
-    function updateVars(){
+    async function createNewUser() {
+        if (createPass === createVerif) {
+            const saveBody = JSON.stringify({username: createUser, password: createPass});
+            console.log(saveBody);
+
+            const databaseResponse = await fetch(address+'users/setUser', {
+                method: 'POST',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: saveBody
+            });
+            const content = await databaseResponse.json();
+            console.log(content);
+        }
+    }
+
+    function updateVars() {
         searchUsername = username;
         searchPassword = password;
     }
@@ -65,8 +80,17 @@ function Login() {
         setUsername(this.username);
         
     }
-    function consoleLog() {
-        console.log(username, password);
+    function loginEvent() {
+        updateVars();
+        loginFunction();
+        dispatch(login());
+    }
+
+    function createEvent() {
+        createNewUser();
+        updateVars();
+        loginFunction();
+        dispatch(login());
     }
     
     return (
@@ -86,30 +110,28 @@ function Login() {
                         onChange={event => setPassword(event.target.value)}>
                     </input>
                 </p>
-                <button onClick={() => <p>{updateVars(),loginFunction(), dispatch(login())}</p>}>Login</button>
+                <button onClick={() => {loginEvent()}}>Login</button>
                 {auth ? "" : <p className="Invalid">Invalid username or password!</p>}
                 <h2>Create account:</h2>
-                <p>Username: 
+                <p>Username:
                     <input 
                         type="text" 
-                        onChange={event => setUsername(event.target.value)}>
+                        onChange={event => setCreateUser(event.target.value)}>
                     </input>
                 </p>
                 <p>Password: 
                     <input 
                         type="password" 
-                        onChange={event => setPassword(event.target.value)}>
+                        onChange={event => setCreatePass(event.target.value)}>
                     </input>
                 </p>
                 <p>Password again: 
                     <input 
                         type="password" 
-                        onChange={event => setPassword(event.target.value)}>
+                        onChange={event => setVerif(event.target.value)}>
                     </input>
                 </p>
-                <p></p>
-                <button>Create account</button>
-
+                <button onClick={() => {createEvent()}}>Create account</button>
             </div>
         </div>
     )

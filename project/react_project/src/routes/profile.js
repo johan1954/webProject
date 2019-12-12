@@ -4,7 +4,7 @@ import '../App.css';
 function Profile() {
     return (
         <div className="App">
-            <h1>Something something</h1>
+            <h1>Logout</h1>
         </div>
     )
 
