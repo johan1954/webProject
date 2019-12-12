@@ -34,4 +34,28 @@
   text-align: center;
 }
 
+.LogoutButton {
+  margin: auto;
+  clear: both;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: lightcoral;
+  font-weight: bold;
+  flex-wrap: wrap;
+  border: 3px solid red;
+
+}
+
+.center {
+  float: left;
+  height: 50%;
+  width: 100%;
+  margin-bottom: -50px;
+  display: flex;
+}
+
+.floater {
+  height: 250px;
+}
+
 

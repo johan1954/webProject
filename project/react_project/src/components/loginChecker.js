@@ -1,25 +1,62 @@
-function loginChecker(username, password, id) {
-    let data, jsonData;
-    data = await fetch(address + "users/" + username);
-    try {
-        jsonData = await data.json();
+import Cookies from 'js-cookie';
+import address from '../config/config';
 
+const databaseHook = async (username) => {
+    let data, jsonData;
+    try {
+        data = await fetch(address + "users/" + username);
+        if (data == null) {
+            console.log("invalid cookie for login");
+            return null;
+        }
+        jsonData = await data.json();
+        return jsonData;
     }
-    catch {
-        return;
+    catch (err) {
+        console.log(err);
+        return null;
+    }   
+}
+
+export const cookieChecker = async () => {
+    let splitCookie, jsonData, cookie;
+    cookie = Cookies.get("usernameid");
+    if (cookie == null) {
+        return null;
     }
+    splitCookie = cookie.split("-");
+    jsonData = await databaseHook(splitCookie[0]);
     // If there is a json from the database
-    if (jsonData != undefined) {
-        if (id !== "") {
-            if (jsonData._id == id) {
-                console.log("Logged in from session id");
-                return true;
+    if (jsonData != null) {
+        if (splitCookie[1].length > 1) {
+            if (jsonData._id === splitCookie[1]) {
+                console.log("Previous login recognized.");
+                return splitCookie[0];
             }
         }
+        else {
+            return null;
+        }
+    }
+    else{
+        return null;
+    } 
+}
+
+export const loginFunction = async (searchUsername, searchPassword) => {
+    if (searchPassword.length < 1 || searchUsername.length < 1) {
+        return false;
+    }
+    console.log("got through the check");
+    let jsonData;
+    jsonData = await databaseHook(searchUsername);
+    // If there is a json from the database
+    if (jsonData !== undefined) {
         // Check the password, if the data matches set states to true and save login data to cookies.
-        if (jsonData.password === password) {
-            console.log("Logged in");
-            document.cookie = ("usernameid="+jsonData.username+jsonData._id);
+        if (jsonData.password === searchPassword) {
+            console.log("Logged in as "+ jsonData.username);
+            const tempString = jsonData.username+"-"+jsonData._id
+            document.cookie = ("usernameid="+tempString);
             return true;
         }
         else {
@@ -29,6 +66,5 @@ function loginChecker(username, password, id) {
     else{
         return false;
     } 
-}
+}  
 
-export default loginChecker;

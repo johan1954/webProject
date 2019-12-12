@@ -30,18 +30,7 @@ function Feed() {
         console.log(allPosts);
     }
 
-    const makeNewPost = async () => {
 
-
-        // const databaseResponse = fetch(address+"posts/setPost", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body ({"postContent": "This is the final posting yayayeyey!", "postPublisher": "kakadu09"})
-        // });
-    }
     return (
         <div className="App">
         <h1>PineX</h1>
