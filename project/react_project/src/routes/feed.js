@@ -3,9 +3,9 @@ import {createPost} from '../actions/index';
 import {useDispatch, useSelector} from 'react-redux';
 import '../App.css';
 import '../navBar.css';
-import Post from '../components/post'
+import Post from '../components/post';
+import NewPost from '../components/NewPost';
 import address from '../config/config';
-import NewPost from '../components/NewPost.js';
 import {cookieChecker} from '../components/loginChecker';
 
 
