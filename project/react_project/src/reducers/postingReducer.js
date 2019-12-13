@@ -1,12 +1,12 @@
-const loggedInReducer = (state = false, action) => {
+const postingReducer = (state = false, action) => {
     switch(action.type) {
-        case 'LOGIN':
+        case 'CREATE':
             return state = true;
-        case 'LOGOUT':
+        case 'DONE':
             return state = false;
         default:
             return state;
     }
 }
 
-export default loggedInReducer;
+export default postingReducer;

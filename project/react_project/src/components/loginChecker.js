@@ -30,7 +30,6 @@ export const cookieChecker = async () => {
     if (jsonData != null) {
         if (splitCookie[1].length > 1) {
             if (jsonData._id === splitCookie[1]) {
-                console.log("Previous login recognized.");
                 return splitCookie[0];
             }
         }
@@ -47,11 +46,11 @@ export const loginFunction = async (searchUsername, searchPassword) => {
     if (searchPassword.length < 1 || searchUsername.length < 1) {
         return false;
     }
-    console.log("got through the check");
+    // console.log("got through the check");
     let jsonData;
     jsonData = await databaseHook(searchUsername);
     // If there is a json from the database
-    if (jsonData !== undefined) {
+    if (jsonData !== null) {
         // Check the password, if the data matches set states to true and save login data to cookies.
         if (jsonData.password === searchPassword) {
             console.log("Logged in as "+ jsonData.username);
@@ -68,3 +67,20 @@ export const loginFunction = async (searchUsername, searchPassword) => {
     } 
 }  
 
+export const usernameCheck = async (searchUsername) => {
+    if (searchUsername.length < 1) {
+        return false;
+    }
+    let jsonData;
+    jsonData = await databaseHook(searchUsername);
+
+    if (jsonData !== null) {
+        if (jsonData.username === searchUsername) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    return false;
+}
