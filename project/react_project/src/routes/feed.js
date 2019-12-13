@@ -5,7 +5,7 @@ import '../App.css';
 import '../navBar.css';
 import Post from '../components/post'
 import address from '../config/config';
-import NewPost from '../components/NewPost';
+import NewPost from '../components/NewPost.js';
 import {cookieChecker} from '../components/loginChecker';
 
 
