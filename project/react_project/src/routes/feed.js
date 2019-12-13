@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import '../App.css';
 import '../navBar.css';
 import Post from '../components/post';
-import NewPost from '../components/NewPost';
+import NewPost from '../components/newPost';
 import address from '../config/config';
 import {cookieChecker} from '../components/loginChecker';
 
