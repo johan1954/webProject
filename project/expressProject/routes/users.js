@@ -8,16 +8,16 @@ router.get('/', (req, res) => {
 });
 
 // Get all users - debugging purposes only, not to be used in real use -cases.
-router.get("/users", async (req, res) => {
-    console.log("finding all users");
-    try {
-        const allUsers = await User.find();
-        res.json(allUsers);
-    }
-    catch (err) {
-        res.status(404).json({message: (err)});
-    }
-}); 
+// router.get("/users", async (req, res) => {
+//     console.log("finding all users");
+//     try {
+//         const allUsers = await User.find();
+//         res.json(allUsers);
+//     }
+//     catch (err) {
+//         res.json({message: (err)});
+//     }
+// }); 
 
 // Get a specific user by username
 router.get("/:username", async (req, res) => {
@@ -50,6 +50,7 @@ router.post("/setUser", async (req, res) => {
     }
 });
 
+// For deleting a user
 router.delete("/delUser/:username", async (req, res) => {
     console.log("deleting:", req.params.username);
     try {

@@ -16,16 +16,22 @@ app.use(bodyParser.json());
 app.use('/users', usersRoute);
 app.use('/posts', postsRoute);
 
+// No view engine or other frontEnd, so respond to favicon with status 204
+app.get('/favicon.ico', (req, res) => res.status(204));
 
+app.listen(8080, () => {
+    console.log("started database server")
+});
+
+
+/* For local developer! */
+/* Remember to start your mongod for connection and storage to the database! */
 
 // var mongoURL = "mongodb://localhost:27017/expressDatabase";
 
 // mongoose.connect(mongoURL, { useNewUrlParser: true }, () => 
 // console.log("Database connection established!"))
-
-app.listen(8080, () => {
-    console.log("started database server")
-});
+/* End of for local dev */
 
 // Next lines are for rahti deployed database structure:
 // Not my own code, directly copied and edited from the course demo.
@@ -54,4 +60,5 @@ res.locals.error = req.app.get("env") === "development" ? err : {};
 res.status(err.status || 500);
 res.render("error");
 });
-  
+
+//End of file
