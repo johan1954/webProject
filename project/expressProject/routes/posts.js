@@ -51,7 +51,7 @@ router.post("/setPost", async (req, res) => {
 router.delete("/delPost/:postId", async (req, res) => {
     console.log("finding:", req.params.postId);
     try {
-        const aPost = await Post.remove({ username: req.params.postId });
+        const aPost = await Post.remove({ _id: req.params.postId });
         res.json(aPost);
     }
     catch (err){
@@ -62,7 +62,7 @@ router.delete("/delPost/:postId", async (req, res) => {
 router.patch("/patchPost/:postId", async (req, res) => {
     console.log("finding:", req.params.postId);
     try {
-        const aPost = await Post.update({ username: req.params.postId });
+        const aPost = await Post.update({ _id: req.params.postId });
         res.json(aPost);
     }
     catch (err){
