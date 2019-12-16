@@ -4,9 +4,9 @@ const Post = require("../models/Post");
 
 // Get all posts from a specific publisher
 router.get("/getPost/:postPublisher", async (req, res) => {
-    console.log("finding:", req.params.username);
+    console.log("finding:", req.params.postPublisher);
     try {
-        const allPosts = await User.find({ username: req.params.username });
+        const allPosts = await Post.find({ postPublisher: req.params.postPublisher });
         res.json(allPosts);
     }
     catch (err){
